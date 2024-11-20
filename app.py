@@ -2,6 +2,7 @@ from flask import Flask
 from config import Config
 from models import db
 from flask_migrate import Migrate
+from flask_bcrypt import Bcrypt
 
 
 def create_app():
@@ -10,6 +11,8 @@ def create_app():
 
     db.init_app(app)
     migrate = Migrate(app, db)
+
+    bcrypt = Bcrypt(app)
 
     return app
 
