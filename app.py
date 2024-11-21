@@ -1,18 +1,23 @@
 from flask import Flask
-from config import Config
-from models import db
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager
+
+from config import Config
+from models import db
+from routes.authentication import authentication
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.register_blueprint(authentication, url_prefix="/dvi-api/authentication")
 
     db.init_app(app)
-    migrate = Migrate(app, db)
 
+    migrate = Migrate(app, db)
     bcrypt = Bcrypt(app)
+    jwt = JWTManager(app)
 
     return app
 
