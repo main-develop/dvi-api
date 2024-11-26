@@ -12,8 +12,8 @@ def register():
     if "email" not in data or "password" not in data:
         return jsonify({"error": "Missing email or password."}), 400
 
-    first_name = data.get("first_name")
-    last_name = data.get("last_name")
+    first_name = data.get("firstName")
+    last_name = data.get("lastName")
     email = data["email"]
     password = data["password"]
     gender = data.get("gender", "Rather not say")
@@ -47,7 +47,7 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if not user or not user.check_password(password):
-        return jsonify({"message": "Invalid email or password."}), 401
+        return jsonify({"error": "Invalid email or password."}), 401
     
     access_token = create_access_token(identity=user.id)
 
