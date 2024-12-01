@@ -9,5 +9,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .env
+.dockerignore
 migrations/alembic.ini
 migrations/script.py.mako
