@@ -19,7 +19,7 @@ def change_personal_information():
     user = User.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "User not found."}), 404
+        return jsonify({"message": "User not found"}), 404
     
     if user.first_name != first_name:
         user.first_name = first_name
@@ -48,17 +48,17 @@ def change_email():
     user = User.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "User not found."}), 404
+        return jsonify({"message": "User not found"}), 404
     if User.query.filter_by(email=email).first():
-        return jsonify({"message": "This email address is already taken."}), 400
+        return jsonify({"message": "This email address is already taken"}), 400
     if not user.check_password(password):
-        return jsonify({"message": "Invalid password."}), 403
+        return jsonify({"message": "Invalid password"}), 403
     
     user.email = email
     db.session.commit()
 
     return jsonify({
-        "message": "Email changed successfully.",
+        "message": "A confirmation email has been sent.",
     }), 200
 
 
@@ -72,9 +72,9 @@ def change_password():
     user = User.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "User not found."}), 404
+        return jsonify({"message": "User not found"}), 404
     if not user.check_password(old_password):
-        return jsonify({"message": "Invalid password."}), 403
+        return jsonify({"message": "Invalid password"}), 403
     
     user.password = new_password
     db.session.commit()
@@ -91,9 +91,9 @@ def delete_account():
     user = User.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "User not found."}), 404
+        return jsonify({"message": "User not found"}), 404
     if not user.check_password(password):
-        return jsonify({"message": "Invalid password."}), 403
+        return jsonify({"message": "Invalid password"}), 403
     
     db.session.delete(user)
     db.session.commit()
@@ -103,4 +103,4 @@ def delete_account():
     redis_client = current_app.redis_client
     redis_client.set(jti, "", ex=timedelta(days=2))
 
-    return jsonify({"message": "Account deleted successfully."}), 200
+    return jsonify({"message": "Account successfully deleted"}), 200

@@ -12,10 +12,10 @@ def get_user_personal_information():
     user = User.query.filter_by(id=user_id).first()
 
     if not user:
-        return jsonify({"message": "User not found."}), 404
+        return jsonify({"message": "User not found"}), 404
 
     return jsonify({
-        "message": "User personal information fetched successfully.",
+        "message": "User personal information fetched successfully",
         "user": {
             "firstName": user.first_name,
             "lastName": user.last_name,
