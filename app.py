@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from config import Config
-from models import db
+from models.db_models.user import db
 from routes.authentication import authentication
 from routes.settings import settings
 from routes.fetch_user_data import fetch_user_data
