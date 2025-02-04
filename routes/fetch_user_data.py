@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from models import db, User
+from models.db_models.user import db, User
 
 fetch_user_data = Blueprint("fetch_user_data", __name__)
 
