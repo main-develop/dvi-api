@@ -91,6 +91,38 @@ For macOS & Linux:
 > git clone https://github.com/main-develop/dvi-frontend.git ./dvi-frontend
 ```
 
+A sample `.env.sample` environment variable file is located in the root directory of the cloned project. It contains the following variables:
+
+```
+# Authentication URLs
+API_REGISTER_URL=http://nginx/dvi-api/authentication/register
+API_LOGIN_URL=http://nginx/dvi-api/authentication/login
+API_LOGOUT_URL=http://nginx/dvi-api/authentication/logout
+
+# Settings URLs
+API_CHANGE_PERSONAL_INFORMATION_URL=http://nginx/dvi-api/settings/change-personal-information
+API_CHANGE_EMAIL_URL=http://nginx/dvi-api/settings/change-email
+API_CHANGE_PASSWORD_URL=http://nginx/dvi-api/settings/change-password
+API_DELETE_ACCOUNT_URL=http://nginx/dvi-api/settings/delete-account
+
+# Fetching User data URLs
+API_GET_USER_PERSONAL_INFORMATION_URL=http://nginx/dvi-api/fetch-user-data/get-user-personal-information
+
+# Logging URLs
+API_SEND_NAVIGATION_LOG_URL=http://nginx/dvi-logging/navigation/send-navigation-log
+
+API_SEND_SIGN_UP_LOG_URL=http://nginx/dvi-logging/authentication/send-sign-up-log
+API_SEND_LOG_IN_LOG_URL=http://nginx/dvi-logging/authentication/send-log-in-log
+API_SEND_LOG_OUT_LOG_URL=http://nginx/dvi-logging/authentication/send-log-out-log
+
+API_SEND_PERSONAL_INFORMATION_LOG_URL=http://nginx/dvi-logging/settings/send-change-personal-information-log
+API_SEND_CHANGE_EMAIL_LOG_URL=http://nginx/dvi-logging/settings/send-change-email-log
+API_SEND_CHANGE_PASSWORD_LOG_URL=http://nginx/dvi-logging/settings/send-change-password-log
+API_SEND_DELETE_ACCOUNT_LOG_URL=http://nginx/dvi-logging/settings/send-delete-account-log
+```
+
+For the project to work properly, you must change the name of this file to `.env`.
+
 ### DVI logging installation
 
 For Windows:
