@@ -26,7 +26,7 @@ The microservice source code should be located in a separate subdirectory. If th
 
 A sample `.env.sample` environment variable file is located in the root directory of the cloned project. It contains the following variables:
 
-```json
+```conf
 SECRET_KEY="your secret key"
 
 SQLALCHEMY_DATABASE_URI="postgresql://postgres:your-password@db:5432/dvi_backend"
@@ -63,7 +63,7 @@ This section can be skipped if all necessary components have been created.
 
 For the database to work properly, the `.db.env` file must contain the following variables:
 
-```json
+```conf
 POSTGRES_USER="postgres"
 POSTGRES_PASSWORD="your password"
 POSTGRES_DB="dvi_backend"
@@ -113,44 +113,44 @@ For macOS & Linux:
 
 For basic load balancing and request distribution through NGINX, you must create a configuration file with the following contents in the `nginx` directory:
 
-```yml
+```conf
 events {
-worker_connections 1024;
+    worker_connections 1024;
 }
 
 http {
-upstream api_servers {
-server api:5000;
-}
+    upstream api_servers {
+        server api:5000;
+    }
 
-upstream logging_servers {
-server logging:5001;
-}
+    upstream logging_servers {
+        server logging:5001;
+    }
 
-upstream frontend_servers {
-server frontend:3000;
-}
+    upstream frontend_servers {
+        server frontend:3000;
+    }
 
-server {
-listen 80;
+    server {
+        listen 80;
 
-proxy_set_header Host $host;
-proxy_set_header X-Real-IP $remote_addr;
-proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
 
-location /dvi-api/ {
-proxy_pass http://api_servers;
-}
+        location /dvi-api/ {
+            proxy_pass http://api_servers;
+        }
 
-location /dvi-logging/ {
-proxy_pass http://logging_servers;
-}
+        location /dvi-logging/ {
+            proxy_pass http://logging_servers;
+        }
 
-location / {
-proxy_pass http://frontend_servers;
-}
-}
+        location / {
+            proxy_pass http://frontend_servers;
+        }
+    }
 }
 ```
 
@@ -158,7 +158,7 @@ proxy_pass http://frontend_servers;
 
 To properly handle logs using Elasticsearch and Kibana services, a `.env` file with the following contents must be created in the root of the parent directory:
 
-```json
+```conf
 ELASTIC_PASSWORD="your password"
 KIBANA_PASSWORD="your password"
 SAVED_OBJECTS_ENCRYPTION_KEY="your encryption key"
@@ -177,7 +177,7 @@ where:
 
 To collect and send logs using Logstash to the Elasticsearch log store, you must create a `logstash.conf` file with the following contents in the root of the parent directory:
 
-```yml
+```conf
 input {
     udp {
         port => 5002
