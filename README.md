@@ -26,7 +26,7 @@ The microservice source code should be located in a separate subdirectory. If th
 
 A sample `.env.sample` environment variable file is located in the root directory of the cloned project. It contains the following variables:
 
-```conf
+```
 SECRET_KEY="your secret key"
 
 SQLALCHEMY_DATABASE_URI="postgresql://postgres:your-password@db:5432/dvi_backend"
@@ -63,7 +63,7 @@ This section can be skipped if all necessary components have been created.
 
 For the database to work properly, the `.db.env` file must contain the following variables:
 
-```conf
+```
 POSTGRES_USER="postgres"
 POSTGRES_PASSWORD="your password"
 POSTGRES_DB="dvi_backend"
@@ -158,7 +158,7 @@ http {
 
 To properly handle logs using Elasticsearch and Kibana services, a `.env` file with the following contents must be created in the root of the parent directory:
 
-```conf
+```
 ELASTIC_PASSWORD="your password"
 KIBANA_PASSWORD="your password"
 SAVED_OBJECTS_ENCRYPTION_KEY="your encryption key"
