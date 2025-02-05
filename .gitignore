@@ -9,5 +9,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 .env
-src/migrations/alembic.ini
-src/migrations/script.py.mako
