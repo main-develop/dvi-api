@@ -228,7 +228,7 @@ To collect and send logs using Logstash to the Elasticsearch log store, you must
 
 ```conf
 input {
-    udp {
+    tcp {
         port => 5002
         codec => json {
             target => "[document]"
@@ -242,7 +242,7 @@ filter {
 
 output {
     elasticsearch {
-        hosts => ["http://elasticsearch:9200/"]
+        hosts => ["http://elasticsearch:9200"]
         index => "dvi-logging"
     }
 }
