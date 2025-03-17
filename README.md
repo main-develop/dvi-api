@@ -141,6 +141,23 @@ For macOS & Linux:
 > git clone https://github.com/main-develop/dvi-logging.git ./dvi-logging
 ```
 
+A sample `.env.sample` environment variable file is located in the root directory of the cloned project. It contains the following variables:
+
+```
+SECRET_KEY="your secret key"
+DOCS_URL="relative url"
+ENV=development
+HOST=http://127.0.0.1:5001
+FAVICON_URL=/{docs_relative_url_here}/favicon.ico
+```
+
+where:
+
+- `SECRET_KEY` - replace `"your secret key"` with a randomly generated string of at least 28 characters;
+- `DOCS_URL` - preferred OpenAPI documentation's relative URL.
+
+For the project to work properly, you must change the name of this file to `.env`.
+
 ### Setup NGINX configuration file
 
 For basic load balancing and request distribution through NGINX, you must create a configuration file with the following contents in the `nginx` directory:
@@ -211,7 +228,7 @@ To collect and send logs using Logstash to the Elasticsearch log store, you must
 
 ```conf
 input {
-    udp {
+    tcp {
         port => 5002
         codec => json {
             target => "[document]"
@@ -225,7 +242,7 @@ filter {
 
 output {
     elasticsearch {
-        hosts => ["http://elasticsearch:9200/"]
+        hosts => ["http://elasticsearch:9200"]
         index => "dvi-logging"
     }
 }
